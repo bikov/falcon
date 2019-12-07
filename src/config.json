@@ -1,0 +1,51 @@
+{
+  "timeToWaitBetweenStopAndStart": 5000,
+  "serversWatcherInterval": 50000,
+  "logFile":"D:\\romachLog\\falcon\\falcon-%DATE%.log",
+  "versions": [
+    {
+      "versionName": "2018.4",
+      "serviceName": "AppReadiness",
+      "servers": [
+        {
+          "location": "home",
+          "ip": "127.0.0.1"
+        },
+        {
+          "location": "home",
+          "ip": "127.0.0.2"
+        },
+        {
+          "location": "office",
+          "ip": "185.175.32.249"
+        }
+      ]
+    },
+    {
+      "versionName": "2013.1",
+      "serviceName": "AppReadiness",
+      "servers": [
+        {
+          "location": "home",
+          "ip": "127.0.0.10"
+        },
+        {
+          "location": "home",
+          "ip": "127.0.0.11"
+        },
+        {
+          "location": "office",
+          "ip": "185.175.32.10"
+        },
+        {
+          "location": "office",
+          "ip": "185.175.32.11"
+        },
+        {
+          "location": "office",
+          "ip": "185.175.32.12"
+        }
+      ]
+    }
+  ]
+}
