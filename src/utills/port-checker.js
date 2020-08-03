@@ -1,9 +1,11 @@
 import { spawn } from './electron-node';
+import { logger } from './logger.js';
 
 const executeCommandOnRemote = (ip, command, ...commandArguments) => new Promise((resolve, reject) => {
     let output = '';
-    // TODO: remove username and password
-    const spawned = spawn('psexec', [`\\\\${ip}`, '-u', 'omri', '-p', 'z', command, ...commandArguments]);
+    const commandsToPsExec = [`\\\\${ip}`, command, ...commandArguments];
+    logger.info(`executing ps exec command with params: ${commandsToPsExec}`);
+    const spawned = spawn('psexec', commandsToPsExec);
     spawned.on('error', (err) => reject(err));
 
     spawned.stdout.on('data', chunk => output += chunk);
@@ -17,6 +19,7 @@ const executeCommandOnRemote = (ip, command, ...commandArguments) => new Promise
 
 const executeNetstat = async (toFind, ip, protocol) => {
     const netstatRawResult = await executeCommandOnRemote(ip, 'netstat', '-apn', protocol);
+    logger.info(`netstat command result is: ${netstatRawResult}`);
     const arrResultLines = netstatRawResult.split('\n');
     const result = [];
     toFind.forEach(searchObj => {

@@ -6,5 +6,5 @@ import portsReducer from './port-checks';
 export default combineReducers({
     servers: serversReducer,
     config: configReducer,
-    ports: portsReducer
+    ports: portsReducer,
 });

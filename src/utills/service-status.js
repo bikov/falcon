@@ -3,7 +3,7 @@ import { dispatchAction } from '../store';
 import { gotServerStatus, statusUpdatedAction, statusUpdatingAction } from '../actions/api-actions';
 import { executeService } from './windows-services';
 
-import { nconf } from '../utills/electron-node';
+import { nconf } from './electron-node';
 
 const asyncForEach = async (array, callback) => {
     for (let index = 0; index < array.length; index++) {
@@ -11,12 +11,15 @@ const asyncForEach = async (array, callback) => {
     }
 };
 
+export const getServiceStatus = async (server, serviceName)=>{
+    const rawResult = await executeService('query', serviceName, server.ip);
+    return  rawResult.split(/\r\n|\r|\n/).find(str => str.includes('STATE')).split(' ').splice(-2)[0]
+}
+
 const getServiceWithStatus = async (server, serviceName) => {
     try {
-        const result = await executeService('query', serviceName, server.ip);
         const status = {
-            service: result.split(/\r\n|\r|\n/).find(str => str.includes('STATE')).split(' ').splice(-2)[0],
-            users: Math.floor(Math.random() * Math.floor(25)),
+            service: await getServiceStatus(server,serviceName)
         };
         return {...server, state: status};
     } catch (e) {
@@ -35,12 +38,4 @@ export const getVersionStatuses = async () => {
 
 export const updateServerStatus = async (versionName, server, serviceName) => {
     dispatchAction(gotServerStatus(versionName, await getServiceWithStatus(server, serviceName)));
-};
-
-export const initServersStatusWatcher = () => {
-    logger.info('starting status watcher');
-    getVersionStatuses();
-    setInterval(async () => {
-        await getVersionStatuses();
-    }, nconf.get('serversWatcherInterval'));
 };

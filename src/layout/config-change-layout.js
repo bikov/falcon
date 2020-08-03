@@ -6,7 +6,7 @@ import ConfigChange from '../containers/config-change';
 const ConfigChangeLayout = ({configChangesSettings}) => (
     <>
         <Header>Config Changes</Header>
-        {configChangesSettings?.map(configChangesSetting => <ConfigChange config={configChangesSetting}/>)}
+        {configChangesSettings?.map((configChangesSetting, index) => <ConfigChange key={index} config={configChangesSetting}/>)}
     </>
 );
 

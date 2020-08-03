@@ -1,8 +1,14 @@
 import { GOT_SERVER_STATUS, STATUS_UPDATED, STATUS_UPDATING } from '../actions/api-actions';
 import { nconf } from '../utills/electron-node';
 
+const setUnknownServiceStatus = (versions) => {
+    return versions?.map(version => {
+        return {...version, servers: version.servers.map(server => ({...server, status: {service: 'unknown'}}))};
+    });
+};
+
 const initialState = {
-    versions: nconf.get('versions'),
+    versions: setUnknownServiceStatus(nconf.get('versions')),
 };
 
 const gotServerStatus = (state, {serverIp, status, version}) => {

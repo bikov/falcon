@@ -1,7 +1,7 @@
 {
   "timeToWaitBetweenStopAndStart": 5000,
-  "serversWatcherInterval": 180000,
   "logFile": "D:\\romachLog\\falcon\\falcon-%DATE%.log",
+  "maxStepsInProgressLine": 5,
   "configChange": [
     {
       "textToShow": "change config",
@@ -64,6 +64,58 @@
           ]
         }
       ]
+    },
+    {
+      "ip": "127.0.0.1",
+      "tcpPortsToCheck": [
+        {
+          "name": ":1337",
+          "number": 1337,
+          "matches": [
+            ":1337",
+            "ESTABLISHED"
+          ]
+        },
+        {
+          "name": "two",
+          "number": 10243,
+          "matches": [
+            ":10243",
+            "LISTENING"
+          ]
+        },
+        {
+          "name": "three",
+          "number": 666666666,
+          "matches": [
+            ":some shit",
+            "LISTENING"
+          ]
+        }
+      ],
+      "udpPortsToCheck": [
+        {
+          "name": "odin",
+          "number": 3702,
+          "matches": [
+            ":3702"
+          ]
+        },
+        {
+          "name": "dva",
+          "number": 52835,
+          "matches": [
+            ":52835"
+          ]
+        },
+        {
+          "name": "tree",
+          "number": 6666666666666666666,
+          "matches": [
+            ":some shit"
+          ]
+        }
+      ]
     }
   ],
   "versions": [
@@ -80,8 +132,8 @@
           "ip": "127.0.0.2"
         },
         {
-          "location": "office",
-          "ip": "185.175.32.249"
+          "location": "win7",
+          "ip": "192.168.56.101"
         }
       ]
     },
@@ -108,6 +160,194 @@
         {
           "location": "office",
           "ip": "185.175.32.12"
+        }
+      ]
+    }
+  ],
+  "versionManipulations": [
+    {
+      "name":"restart version 1",
+      "steps":[
+        {
+          "title":"Change config",
+          "description":"config change to do some interesting staff",
+          "icon":"exchange",
+          "action":"change-config",
+          "args":{
+            "filePath":"D:\\shit\\falcon-test\\service-status1.js",
+            "lineToChange":"export const getVersionStatuses = async () => {",
+            "newLine":"blat",
+            "returnBack":true,
+            "secondToWaitBeforeReturnBack":10
+          }
+        },
+        {
+          "title":"Check Ports",
+          "description":"check ports",
+          "icon":"checkmark box",
+          "action":"check-ports",
+          "args":{
+            "ip":"192.168.56.101",
+            "tcpPorts":[
+              {"name":"one","number":135,"matches":[":135","ESTABLISHED"]},
+              {"name":"two","number":10243,"matches":[":10243","LISTENING"]}
+            ],
+            "udpPorts":[{"name":"odin","number":3702,"matches":[":3702"]}]
+          }
+        },
+        {
+          "title":"Start",
+          "description":"first service start",
+          "icon":"play",
+          "action":"manipulate-service",
+          "args":{
+            "action":"start",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Stop",
+          "description":"first service stop",
+          "icon":"stop",
+          "action":"manipulate-service",
+          "args":{
+            "action":"stop",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Start",
+          "description":"first service start",
+          "icon":"play",
+          "action":"manipulate-service",
+          "args":{
+            "action":"start",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Stop",
+          "description":"first service stop",
+          "icon":"stop",
+          "action":"manipulate-service",
+          "args":{
+            "action":"stop",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Start",
+          "description":"first service start",
+          "icon":"play",
+          "action":"manipulate-service",
+          "args":{
+            "action":"start",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Restart - second",
+          "description":"second service restart",
+          "icon":"refresh",
+          "action":"manipulate-service",
+          "args":{
+            "action":"blat",
+            "serviceName":"nah",
+            "ip":"0",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Stop",
+          "description":"first service stop",
+          "icon":"stop",
+          "action":"manipulate-service",
+          "args":{
+            "action":"stop",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Start",
+          "description":"first service start",
+          "icon":"play",
+          "action":"manipulate-service",
+          "args":{
+            "action":"start",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Stop",
+          "description":"first service stop",
+          "icon":"stop",
+          "action":"manipulate-service",
+          "args":{
+            "action":"stop",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Start",
+          "description":"first service start",
+          "icon":"play",
+          "action":"manipulate-service",
+          "args":{
+            "action":"start",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
+        },
+        {
+          "title":"Stop",
+          "description":"first service stop",
+          "icon":"stop",
+          "action":"manipulate-service",
+          "args":{
+            "action":"stop",
+            "serviceName":"AppReadiness",
+            "ip":"127.0.0.1",
+            "waitToCheck":5000,
+            "versionName":"2018.4",
+            "location":"home"
+          }
         }
       ]
     }

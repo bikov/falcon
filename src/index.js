@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { isConfigExist, isPathInEnv } from './utills/load-config';
 import './index.css';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import 'semantic-ui-css/semantic.min.css';
-import { initServersStatusWatcher } from './utills/service-status';
 
-initServersStatusWatcher();
+console.log({isPathInEnv: isPathInEnv(), isConfigExist: isConfigExist()});
+
 ReactDOM.render(
     <Provider store={configureStore()}>
         <App/>

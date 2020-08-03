@@ -2,6 +2,7 @@ import { nconf } from '../utills/electron-node';
 
 const initialState = {
     configChangesSettings: nconf.get('configChange'),
+    versionManipulationSettings: nconf.get('versionManipulations')
 };
 
 const reducers = {};
