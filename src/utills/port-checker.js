@@ -18,15 +18,15 @@ const tcpMockToFind = [
 const udpMockToFind = [
     {
         name: 'odin',
-        matches: [':3702', 'ESTABLISHED'],
+        matches: [':3702'],
     },
     {
         name: 'dva',
-        matches: [':52835', 'LISTENING'],
+        matches: [':52835'],
     },
     {
         name: 'tree',
-        matches: [':some shit', 'LISTENING'],
+        matches: [':some shit'],
     },
 ];
 
