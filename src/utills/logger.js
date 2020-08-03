@@ -1,4 +1,4 @@
-import { nconf } from '../utills/electron-node';
+// import * as nconf from 'nconf';
 
 const electron = window.require('electron');
 const {transports, createLogger, format} = electron.remote.require('winston');

@@ -1,7 +1,7 @@
 {
   "name": "falcon",
   "version": "0.1.0",
-  "main": "public/electron.js",
+  "main": "electron/electron-starter.js",
   "homepage": "./",
   "dependencies": {
     "nconf": "^0.10.0",
@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron:build": "electron-packager . falcon --overwrite --platform=win32 --arch=x64 --icon=public/favicon.ico",
-    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:5000 electron .",
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "start": "nf start",
     "build": "npm run react:build && npm run electron:build",
     "portable": "npm run react:build && electron-builder --dir icon=public/favicon.ico",

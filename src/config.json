@@ -2,6 +2,16 @@
   "timeToWaitBetweenStopAndStart": 5000,
   "serversWatcherInterval": 50000,
   "logFile":"D:\\romachLog\\falcon\\falcon-%DATE%.log",
+  "configChange": [
+    {
+      "textToShow": "change config",
+      "filePath": "D:\\shit\\falcon-test\\service-status.js",
+      "lineToChange": "export const getVersionStatuses = async () => {",
+      "newLine": "blat",
+      "returnBack": true,
+      "secondToWaitBeforeReturnBack": 10
+    }
+  ],
   "versions": [
     {
       "versionName": "2018.4",

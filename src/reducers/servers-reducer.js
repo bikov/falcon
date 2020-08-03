@@ -1,17 +1,12 @@
-import { GOT_SERVER_STATUS, GOT_VERSIONS, STATUS_UPDATED, STATUS_UPDATING } from '../actions/api-actions';
+import { GOT_SERVER_STATUS, STATUS_UPDATED, STATUS_UPDATING } from '../actions/api-actions';
 import { nconf } from '../utills/electron-node';
 
-
-export const initialState = {
-    serversForActions: nconf.get('versions'),
-};
-
-const gotVersions = (state, versions) => {
-    return {...state, serversForActions: versions};
+const initialState = {
+    versions: nconf.get('versions'),
 };
 
 const gotServerStatus = (state, {serverIp, status, version}) => {
-    const newServersForActions = state.serversForActions.map(serverForAction => serverForAction.versionName === version ? {
+    const newServersForActions = state.versions?.map(serverForAction => serverForAction.versionName === version ? {
         ...serverForAction,
         servers: serverForAction.servers.map(server => server.ip === serverIp ? {
             ...server,
@@ -20,12 +15,12 @@ const gotServerStatus = (state, {serverIp, status, version}) => {
     } : serverForAction);
     return {
         ...state,
-        serversForActions: newServersForActions,
+        versions: newServersForActions,
     };
 };
 
 const statusUpdating = (state) => {
-    const newServersForActions = state.serversForActions.map(serverForAction => ({
+    const newServersForActions = state.versions?.map(serverForAction => ({
         ...serverForAction,
         servers: serverForAction.servers.map(server => ({
             ...server,
@@ -34,7 +29,7 @@ const statusUpdating = (state) => {
     }));
     return {
         ...state,
-        serversForActions: newServersForActions,
+        versions: newServersForActions,
         updatingNow: true,
     };
 };
@@ -44,7 +39,6 @@ const statusUpdated = (state) => {
 };
 
 const reducers = {
-    [GOT_VERSIONS]: gotVersions,
     [GOT_SERVER_STATUS]: gotServerStatus,
     [STATUS_UPDATING]: statusUpdating,
     [STATUS_UPDATED]: statusUpdated,
