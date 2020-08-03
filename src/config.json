@@ -1,7 +1,7 @@
 {
   "timeToWaitBetweenStopAndStart": 5000,
-  "serversWatcherInterval": 50000,
-  "logFile":"D:\\romachLog\\falcon\\falcon-%DATE%.log",
+  "serversWatcherInterval": 180000,
+  "logFile": "D:\\romachLog\\falcon\\falcon-%DATE%.log",
   "configChange": [
     {
       "textToShow": "change config",
@@ -10,6 +10,60 @@
       "newLine": "blat",
       "returnBack": true,
       "secondToWaitBeforeReturnBack": 10
+    }
+  ],
+  "portChecks": [
+    {
+      "ip": "192.168.56.101",
+      "tcpPortsToCheck": [
+        {
+          "name": "one",
+          "number": 135,
+          "matches": [
+            ":135",
+            "ESTABLISHED"
+          ]
+        },
+        {
+          "name": "two",
+          "number": 10243,
+          "matches": [
+            ":10243",
+            "LISTENING"
+          ]
+        },
+        {
+          "name": "three",
+          "number": 666666666,
+          "matches": [
+            ":some shit",
+            "LISTENING"
+          ]
+        }
+      ],
+      "udpPortsToCheck": [
+        {
+          "name": "odin",
+          "number": 3702,
+          "matches": [
+            ":3702"
+          ]
+        },
+        {
+          "name": "dva",
+          "number": 52835,
+          "matches": [
+            ":52835"
+          ]
+        },
+        {
+          "name": "tree",
+          "number": 6666666666666666666,
+          "matches": [
+            ":some shit"
+          ]
+        }
+      ]
     }
   ],
   "versions": [

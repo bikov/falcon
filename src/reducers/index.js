@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import serversReducer from './servers-reducer';
-import configReducer from './config-reducer.js';
+import configReducer from './config-reducer';
+import portsReducer from './port-checks';
 
 export default combineReducers({
     servers: serversReducer,
-    config: configReducer
+    config: configReducer,
+    ports: portsReducer
 });

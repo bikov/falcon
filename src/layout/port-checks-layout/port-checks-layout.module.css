@@ -1,0 +1,8 @@
+.service{
+    display: flex;
+}
+
+.ports{
+    width: 50%;
+    padding: 2%;
+}
