@@ -2,11 +2,13 @@ import { manipulateService } from './service-manipulation-executor';
 import { logger } from '../logger';
 import { executePortCheck } from './port-check-executor';
 import { executeConfigChange } from './config-check-executor';
+import { executeLogChecking } from './log-reader-executor';
 
 const actionMap = {
     'manipulate-service': manipulateService,
     'check-ports': executePortCheck,
-    'change-config': executeConfigChange
+    'change-config': executeConfigChange,
+    'check-logs': executeLogChecking
 };
 
 export const executeCommand = async (command) => {
